@@ -1,5 +1,3 @@
-
-
 //Firebase imports
 import { signInWithGooglePopup, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils"
 
