@@ -1,5 +1,13 @@
 import {  initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { 
+    getAuth, 
+    signInWithPopup, 
+    GoogleAuthProvider, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut,
+    onAuthStateChanged 
+} from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
@@ -11,7 +19,8 @@ const firebaseConfig = {
     appId: "1:512571239795:web:7cd1c2a73aca2173c8e906"
   };
 
-  const firebaseApp = initializeApp(firebaseConfig);
+//   const firebaseApp = initializeApp(firebaseConfig);
+    initializeApp(firebaseConfig);
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -67,3 +76,6 @@ const firebaseConfig = {
 };
 
     export const signOutUser = () => signOut(auth);
+
+    // using Observer to monitor state change in authentication
+    export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
