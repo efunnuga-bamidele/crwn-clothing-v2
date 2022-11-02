@@ -47,11 +47,16 @@ const SignInForm = () => {
             resetFields();
             console.log(user)
         }catch (error){
-            if (error.code === "auth/user-not-found"){
-                alert("User detail was not found");
-            }else{
-                console.log(error.message);
-            }
+                switch (error.code){
+                    case "auth/user-not-found":
+                        alert("Incorrect password for email");
+                        break;
+                    case "auth/wrong-password":
+                        alert("User detail was not found");
+                        break;
+                    default:
+                        console.log(error.message);
+                }
         }
     } 
 
@@ -80,7 +85,7 @@ const SignInForm = () => {
                     <Button type="submit">
                         Sign In
                     </Button>
-                    <Button buttonType="google" type="submit" onClick={logGooglePopupUser}>
+                    <Button buttonType="google" type="button" onClick={logGooglePopupUser}>
                         Google Sign-In
                     </Button> 
                 </div>
